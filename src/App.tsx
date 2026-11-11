@@ -1,6 +1,10 @@
+import { devFlags } from './dev/flags';
 import { TokenSpecimen } from './dev/TokenSpecimen';
+import { Stage } from './stage/Stage';
 
 export function App() {
-  // Step 1 only has tokens to show. The stage replaces this in step 2.
-  return <TokenSpecimen />;
+  if (devFlags.tokens) return <TokenSpecimen />;
+
+  // The stage is empty for now. Rails and the hero arrive in later steps.
+  return <Stage showGuides={devFlags.guides} />;
 }

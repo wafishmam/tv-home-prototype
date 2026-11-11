@@ -1,0 +1,23 @@
+/* Fills the window. The area around the stage is the letterbox. */
+.stage-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-void);
+}
+
+/*
+ * Fixed-size stage, centred with top/left 50% plus a translate, then scaled.
+ * The transform itself is set inline by Stage.tsx because it includes the
+ * computed scale.
+ */
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--stage-width);
+  height: var(--stage-height);
+  overflow: hidden;
+  background: var(--color-bg);
+  transform-origin: center;
+}

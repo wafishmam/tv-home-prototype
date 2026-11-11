@@ -1,0 +1,51 @@
+.guides {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-guides);
+  /* Never intercept hover or clicks meant for the UI underneath. */
+  pointer-events: none;
+  /* Outline the full stage edge so it is visible against the letterbox. */
+  outline: var(--stroke-thin) solid var(--color-live);
+  outline-offset: calc(var(--stroke-thin) * -1);
+}
+
+.guides__safe {
+  position: absolute;
+  inset: var(--safe-y) var(--safe-x);
+  border: var(--stroke-thin) dashed var(--color-live);
+}
+
+.guides__line {
+  position: absolute;
+  background: var(--color-line);
+}
+
+.guides__line--vertical {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--stroke-thin);
+}
+
+.guides__line--horizontal {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--stroke-thin);
+}
+
+.guides__label {
+  position: absolute;
+  right: var(--safe-x);
+  bottom: var(--safe-y);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--color-on-live);
+  background: var(--color-live);
+}
+
+.guides__value {
+  margin-left: var(--space-4);
+  font-variant-numeric: tabular-nums;
+}

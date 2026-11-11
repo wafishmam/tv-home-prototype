@@ -24,7 +24,7 @@
 .specimen__section {
   margin-top: var(--space-8);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-line);
+  border-top: var(--stroke-thin) solid var(--color-line);
 }
 
 .specimen__heading {
@@ -63,7 +63,7 @@
   width: var(--space-10);
   height: var(--space-10);
   background: var(--color-surface-raised);
-  border: 1px solid var(--color-line);
+  border: var(--stroke-thin) solid var(--color-line);
   border-radius: var(--radius-md);
 }
 
