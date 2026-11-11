@@ -1,0 +1,81 @@
+/*
+ * The focus treatment. Only transform and opacity change, so the browser can
+ * animate everything on the compositor without layout or paint.
+ *
+ * These are CSS transitions, not keyframes or JS animation, because a
+ * transition retargets from wherever it currently is. Pressing an arrow key
+ * again mid-move just bends the motion toward the new target.
+ */
+.focusable {
+  position: relative;
+  border-radius: var(--card-radius);
+  /* The ring below replaces the browser outline and is shown at all times. */
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* Scale from the left edge, so the focused card stays on the anchor line. */
+  transform-origin: left center;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+
+.focusable[data-focus='focused'] {
+  z-index: 1;
+  transform: scale(var(--focus-scale));
+}
+
+/* Cards after the focused one move right by exactly the width it gained. */
+.focusable[data-focus='shifted'] {
+  transform: translateX(var(--focus-growth));
+}
+
+/* Cards already passed sit in the left margin, dimmed. */
+.focusable[data-focus='before'] {
+  opacity: var(--opacity-dim);
+}
+
+/* ---- Focus ring ---------------------------------------------------------- */
+/* A pseudo-element, so showing it is an opacity change and not a repaint.
+   It appears faster than the scale: where focus is should be readable at once. */
+.focusable::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-gap) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--color-focus);
+  border-radius: calc(var(--card-radius) + var(--focus-ring-gap) + var(--focus-ring-width));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-instant) var(--ease-out);
+}
+
+.focusable[data-focus='focused']::after {
+  opacity: 1;
+}
+
+/* ---- Shadow -------------------------------------------------------------- */
+/* Also a pseudo-element faded with opacity. Animating box-shadow itself
+   would repaint on every frame. */
+.focusable::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-raised);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.focusable[data-focus='focused']::before {
+  opacity: 1;
+}
+
+/* ---- Press --------------------------------------------------------------- */
+.focusable__body {
+  position: relative;
+  transition: transform var(--duration-instant) var(--ease-out);
+}
+
+.focusable[data-pressed] .focusable__body {
+  transform: scale(var(--press-scale));
+}

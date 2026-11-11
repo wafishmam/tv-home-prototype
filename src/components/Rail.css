@@ -1,5 +1,18 @@
 .rail {
+  /* How much wider a card gets when focused. Its neighbours move by this much. */
+  --focus-growth: calc(var(--card-width) * (var(--focus-scale) - 1));
+
   margin-bottom: var(--rail-gap);
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.rail--live {
+  --focus-growth: calc(var(--card-width-live) * (var(--focus-scale) - 1));
+}
+
+/* Rails the screen has scrolled past fade out as they slide under the hero. */
+.rail[data-passed='true'] {
+  opacity: 0;
 }
 
 .rail__title {
@@ -9,6 +22,12 @@
   font-weight: var(--weight-semibold);
   line-height: var(--rail-title-height);
   color: var(--color-text);
+  opacity: var(--opacity-muted);
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.rail[data-focused='true'] .rail__title {
+  opacity: 1;
 }
 
 /* Cards never shrink or wrap: the track simply runs off the right edge. */
@@ -18,6 +37,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  /* Same duration and curve as the cards, so the scroll, the scale and the
+     neighbour shift read as one movement. */
+  transition: transform var(--duration-base) var(--ease-out);
+  will-change: transform;
 }
 
 .rail__item {

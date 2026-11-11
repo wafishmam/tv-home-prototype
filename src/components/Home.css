@@ -1,12 +1,14 @@
 .home {
   position: absolute;
   inset: 0;
+  /* This is a remote-driven screen, not a document: no text selection. */
+  user-select: none;
 }
 
 /*
  * A window onto the rail stack. It starts where the hero ends and clips
  * anything outside, so rails above the focused one are hidden once the stack
- * starts scrolling.
+ * scrolls.
  */
 .home__rails {
   position: absolute;
@@ -21,4 +23,6 @@
 /* Left padding is the anchor: the first card of every rail starts here. */
 .home__rail-stack {
   padding-left: var(--safe-x);
+  transition: transform var(--duration-slow) var(--ease-out);
+  will-change: transform;
 }

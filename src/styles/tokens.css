@@ -68,7 +68,8 @@
   --card-progress-height: var(--space-2);
 
   --rail-title-height: 40px;
-  --rail-title-gap: var(--space-4);
+  /* Room for the focused card to grow, and its ring, without touching the title. */
+  --rail-title-gap: var(--space-5);
   --rail-gap: var(--space-7);
 
   /* ---- Posters --------------------------------------------------------- */
@@ -135,10 +136,21 @@
   /* For things that travel across the screen (rail scrolling). */
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
+  /* Minimum time between moves while an arrow key is held down. */
+  --nav-repeat-interval: 110ms;
+
   /* ---- Focus ----------------------------------------------------------- */
   --focus-ring-width: 4px;
   --focus-ring-gap: 6px;
   --focus-scale: 1.08;
+  /* The quick dip when an item is selected. */
+  --press-scale: 0.97;
+
+  /* ---- Opacity --------------------------------------------------------- */
+  /* Titles of rails that do not have focus. */
+  --opacity-muted: 0.6;
+  /* Cards that have been scrolled past. */
+  --opacity-dim: 0.4;
 
   /* ---- Elevation ------------------------------------------------------- */
   --shadow-raised: 0 24px 48px rgb(0 0 0 / 0.5);
