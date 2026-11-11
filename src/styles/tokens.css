@@ -1,0 +1,118 @@
+/*
+ * Nightjar design tokens.
+ *
+ * Every size here is in px against the fixed 1920 x 1080 stage. The stage is
+ * scaled as a whole to fit the window (see src/stage), so px behaves like a
+ * "TV pixel" and nothing in component CSS needs to be responsive.
+ *
+ * Component CSS should only reference these tokens, never raw numbers.
+ */
+
+:root {
+  /* ---- Stage ----------------------------------------------------------- */
+  --stage-width: 1920px;
+  --stage-height: 1080px;
+
+  /* ---- Color ----------------------------------------------------------- */
+  /* Warm charcoal base, cream ink, one coral accent reserved for "live". */
+  --color-bg: #14110f;
+  --color-surface: #1f1b18;
+  --color-surface-raised: #2b2622;
+  --color-line: rgb(244 236 223 / 0.14);
+
+  --color-text: #f4ecdf;
+  --color-text-muted: #b8ad9d;
+  --color-text-faint: #8a8073;
+
+  --color-focus: #fff6e5;
+  --color-live: #ff6a4d;
+  --color-on-live: #2a0d06;
+
+  /* Scrims sit between poster art and text so text stays readable. */
+  --color-scrim-strong: rgb(20 17 15 / 0.92);
+  --color-scrim: rgb(20 17 15 / 0.64);
+  --color-scrim-soft: rgb(20 17 15 / 0.32);
+  --color-scrim-none: rgb(20 17 15 / 0);
+
+  /* ---- Spacing (4px base) ---------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* TV safe area: keep content away from the screen edges (about 5%). */
+  --safe-x: var(--space-9);
+  --safe-y: var(--space-7);
+
+  /* ---- Radius ---------------------------------------------------------- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Typography ------------------------------------------------------ */
+  /* Sized for a 1080p screen across a room: nothing below 22px. */
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
+  --font-text: 'Instrument Sans Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --type-caption: 22px;
+  --type-label: 24px;
+  --type-body: 28px;
+  --type-title-sm: 32px;
+  --type-title: 40px;
+  --type-headline: 64px;
+  --type-display: 104px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 800;
+
+  --leading-tight: 1;
+  --leading-snug: 1.2;
+  --leading-normal: 1.4;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-caps: 0.08em;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  /* Focus movement lives in the 150 to 250ms window. */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+  /* The hero is ambient, not a direct response to a key press, so it can
+     take longer than the UI-feedback durations above. */
+  --duration-hero: 450ms;
+  /* How long focus must rest on a card before the hero follows it. */
+  --delay-hero-dwell: 300ms;
+
+  /* Strong ease-out: fast start, long settle, no overshoot. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* For things that travel across the screen (rail scrolling). */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* ---- Focus ----------------------------------------------------------- */
+  --focus-ring-width: 4px;
+  --focus-ring-gap: 6px;
+  --focus-scale: 1.08;
+
+  /* ---- Elevation ------------------------------------------------------- */
+  --shadow-raised: 0 24px 48px rgb(0 0 0 / 0.5);
+
+  /* ---- Layers ---------------------------------------------------------- */
+  --z-hero: 0;
+  --z-rails: 1;
+  --z-topbar: 10;
+  --z-panel: 20;
+  --z-hint: 30;
+  --z-touch: 40;
+}

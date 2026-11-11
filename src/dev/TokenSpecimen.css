@@ -1,0 +1,104 @@
+.specimen {
+  padding: var(--space-8) var(--safe-x);
+}
+
+.specimen code {
+  font-family: var(--font-text);
+  font-size: var(--type-caption);
+  color: var(--color-text-faint);
+}
+
+.specimen__brand {
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: var(--weight-black);
+  font-stretch: 75%;
+  line-height: var(--leading-tight);
+}
+
+.specimen__note {
+  color: var(--color-text-muted);
+  margin: var(--space-3) 0 var(--space-5);
+}
+
+.specimen__section {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.specimen__heading {
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.specimen__display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+.specimen__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.specimen__swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.specimen__chip {
+  display: block;
+  width: var(--space-10);
+  height: var(--space-10);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.specimen__chip--focused {
+  border-color: transparent;
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-gap);
+  transform: scale(var(--focus-scale));
+}
+
+.specimen__chip--motion {
+  background: var(--color-live);
+  border-color: transparent;
+  transition-property: transform;
+  transition-timing-function: var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .specimen__chip--motion:hover {
+    transform: scale(var(--focus-scale));
+  }
+}
+
+.specimen__type-row,
+.specimen__space-row {
+  display: grid;
+  grid-template-columns: calc(var(--space-10) * 2) 1fr;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-3) 0;
+}
+
+.specimen__bar {
+  display: block;
+  height: var(--space-5);
+  background: var(--color-text);
+  border-radius: var(--radius-sm);
+}
