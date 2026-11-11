@@ -1,0 +1,24 @@
+.home {
+  position: absolute;
+  inset: 0;
+}
+
+/*
+ * A window onto the rail stack. It starts where the hero ends and clips
+ * anything outside, so rails above the focused one are hidden once the stack
+ * starts scrolling.
+ */
+.home__rails {
+  position: absolute;
+  top: var(--rails-top);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-rails);
+  overflow: hidden;
+}
+
+/* Left padding is the anchor: the first card of every rail starts here. */
+.home__rail-stack {
+  padding-left: var(--safe-x);
+}

@@ -1,0 +1,25 @@
+.rail {
+  margin-bottom: var(--rail-gap);
+}
+
+.rail__title {
+  height: var(--rail-title-height);
+  margin-bottom: var(--rail-title-gap);
+  font-size: var(--type-title-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--rail-title-height);
+  color: var(--color-text);
+}
+
+/* Cards never shrink or wrap: the track simply runs off the right edge. */
+.rail__track {
+  display: flex;
+  gap: var(--card-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail__item {
+  flex: none;
+}

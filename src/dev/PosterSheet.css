@@ -1,0 +1,19 @@
+.sheet {
+  padding: var(--space-8) var(--safe-x);
+}
+
+.sheet__section {
+  margin-bottom: var(--space-8);
+}
+
+.sheet__heading {
+  margin-bottom: var(--space-5);
+  font-size: var(--type-title-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.sheet__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--card-gap);
+}

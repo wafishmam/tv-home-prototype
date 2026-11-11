@@ -1,0 +1,43 @@
+.live-card {
+  position: relative;
+  width: var(--card-width-live);
+  height: var(--card-height);
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+}
+
+/* A dark chip, because it sits across two team colours of unknown brightness. */
+.live-card__league {
+  position: absolute;
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-scrim-strong);
+  color: var(--color-text);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* One column per team, matching the two halves of the artwork. */
+.live-card__teams {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.live-card__team {
+  font-family: var(--font-display);
+  font-size: var(--type-headline);
+  font-weight: var(--weight-black);
+  font-stretch: var(--stretch-condensed);
+  line-height: var(--leading-tight);
+}

@@ -1,0 +1,38 @@
+.topbar {
+  position: absolute;
+  top: var(--safe-y);
+  left: var(--safe-x);
+  right: var(--safe-x);
+  z-index: var(--z-topbar);
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.topbar__mark {
+  width: var(--topbar-height);
+  height: var(--topbar-height);
+}
+
+.topbar__mark-moon {
+  fill: var(--color-text);
+}
+
+.topbar__mark-eye {
+  fill: var(--color-live);
+}
+
+.topbar__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--type-title);
+  font-weight: var(--weight-black);
+  font-stretch: var(--stretch-condensed);
+  line-height: var(--leading-tight);
+}

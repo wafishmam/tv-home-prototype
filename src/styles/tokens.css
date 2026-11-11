@@ -52,6 +52,31 @@
   --safe-x: var(--space-9);
   --safe-y: var(--space-7);
 
+  /* ---- Home screen layout ---------------------------------------------- */
+  --topbar-height: var(--space-7);
+  /* Top edge of the focused rail. Everything above it belongs to the hero.
+     Chosen so one full rail fits below, plus a peek of the next rail. */
+  --rails-top: 600px;
+
+  /* ---- Cards and rails ------------------------------------------------- */
+  /* Cards are 16:9. Live cards are wider: two teams plus a clock. */
+  --card-width: 384px;
+  --card-height: 216px;
+  --card-width-live: 480px;
+  --card-gap: var(--space-5);
+  --card-radius: var(--radius-md);
+  --card-progress-height: var(--space-2);
+
+  --rail-title-height: 40px;
+  --rail-title-gap: var(--space-4);
+  --rail-gap: var(--space-7);
+
+  /* ---- Posters --------------------------------------------------------- */
+  --poster-padding: var(--space-5);
+  --poster-tilt: -3deg;
+  /* How far a poster's corner scrim reaches before it is fully clear. */
+  --poster-scrim-reach: 60%;
+
   /* ---- Strokes --------------------------------------------------------- */
   /* 2px, not 1px: the stage is often scaled below 1, where 1px lines vanish. */
   --stroke-thin: 2px;
@@ -88,6 +113,10 @@
   --tracking-tight: -0.02em;
   --tracking-normal: 0;
   --tracking-caps: 0.08em;
+  --tracking-wide: 0.14em;
+
+  /* The display face has a width axis. 75% is its narrowest setting. */
+  --stretch-condensed: 75%;
 
   /* ---- Motion ---------------------------------------------------------- */
   /* Focus movement lives in the 150 to 250ms window. */

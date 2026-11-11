@@ -1,10 +1,16 @@
+import { Home } from './components/Home';
 import { devFlags } from './dev/flags';
+import { PosterSheet } from './dev/PosterSheet';
 import { TokenSpecimen } from './dev/TokenSpecimen';
 import { Stage } from './stage/Stage';
 
 export function App() {
   if (devFlags.tokens) return <TokenSpecimen />;
+  if (devFlags.posters) return <PosterSheet />;
 
-  // The stage is empty for now. Rails and the hero arrive in later steps.
-  return <Stage showGuides={devFlags.guides} />;
+  return (
+    <Stage showGuides={devFlags.guides}>
+      <Home />
+    </Stage>
+  );
 }

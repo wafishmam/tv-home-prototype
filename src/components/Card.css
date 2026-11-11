@@ -1,0 +1,24 @@
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  background: var(--color-surface);
+}
+
+/* Full-bleed strip along the bottom edge of the poster. */
+.card__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--card-progress-height);
+  background: var(--color-scrim);
+}
+
+.card__progress-fill {
+  height: 100%;
+  background: var(--color-text);
+  transform-origin: left center;
+}
