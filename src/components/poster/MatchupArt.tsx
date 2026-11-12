@@ -6,16 +6,20 @@ interface MatchupArtProps {
   home: Team;
   away: Team;
   sport: Sport;
+  /** Horizontal centre of the seam between the two colours. Defaults to the middle. */
+  seam?: number;
 }
+
+/** How far the seam leans: its top is this far right of centre, its bottom this far left. */
+const LEAN = 20;
 
 /*
  * Sport: the two team colours split by a slanted seam, with the markings of
  * the playing surface drawn faintly on top. Home is on the left.
  */
-export function MatchupArt({ home, away, sport }: MatchupArtProps) {
-  // The seam runs from (212, 0) at the top to (172, 216) at the bottom.
-  const top = 212;
-  const bottom = 172;
+export function MatchupArt({ home, away, sport, seam = ART_WIDTH / 2 }: MatchupArtProps) {
+  const top = seam + LEAN;
+  const bottom = seam - LEAN;
 
   return (
     <svg {...artSvgProps}>

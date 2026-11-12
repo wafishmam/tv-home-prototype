@@ -1,3 +1,4 @@
+import { MotionConfig } from 'motion/react';
 import { Home } from './components/Home';
 import { devFlags } from './dev/flags';
 import { PosterSheet } from './dev/PosterSheet';
@@ -9,8 +10,12 @@ export function App() {
   if (devFlags.posters) return <PosterSheet />;
 
   return (
-    <Stage showGuides={devFlags.guides}>
-      <Home />
-    </Stage>
+    // reducedMotion="user": when the system asks for reduced motion, the motion
+    // library drops movement and keeps fades.
+    <MotionConfig reducedMotion="user">
+      <Stage showGuides={devFlags.guides}>
+        <Home />
+      </Stage>
+    </MotionConfig>
   );
 }

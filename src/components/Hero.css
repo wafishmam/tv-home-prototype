@@ -1,0 +1,126 @@
+.hero {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hero);
+}
+
+/* The focused item's art, large, in the top right corner. */
+.hero__backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--hero-backdrop-width);
+  height: var(--hero-backdrop-height);
+}
+
+/*
+ * Three fades of the page colour over the backdrop:
+ *   from the left, so the text column sits on a solid ground
+ *   from the bottom, so the art is gone by the time it reaches the rails
+ *   from the top, so the top bar stays readable
+ */
+.hero__scrim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--hero-backdrop-width);
+  height: var(--hero-backdrop-height);
+  background:
+    linear-gradient(
+      to right,
+      var(--color-bg) var(--hero-fade-solid),
+      var(--color-scrim-none) var(--hero-fade-clear)
+    ),
+    linear-gradient(
+      to top,
+      var(--color-bg) var(--hero-fade-floor),
+      var(--color-scrim-none) var(--hero-fade-bottom)
+    ),
+    linear-gradient(to bottom, var(--color-scrim), var(--color-scrim-none) var(--hero-fade-top));
+}
+
+/* Anchored to the bottom of the hero area, so titles of any length end at
+   the same line just above the rails. */
+.hero__content {
+  position: absolute;
+  left: var(--safe-x);
+  bottom: calc(var(--stage-height) - var(--rails-top) + var(--space-7));
+  width: var(--hero-content-width);
+}
+
+.hero__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.hero__live {
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--color-live);
+  color: var(--color-on-live);
+  font-weight: var(--weight-bold);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--type-hero);
+  font-weight: var(--weight-black);
+  font-stretch: var(--stretch-condensed);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.hero__versus {
+  color: var(--color-text-faint);
+}
+
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text);
+  font-size: var(--type-label);
+  font-weight: var(--weight-medium);
+}
+
+/* A small dot between items. */
+.hero__meta li + li::before {
+  content: '';
+  display: inline-block;
+  width: var(--space-2);
+  height: var(--space-2);
+  margin-right: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-text-faint);
+  vertical-align: middle;
+}
+
+.hero__rating {
+  padding: 0 var(--space-2);
+  border: var(--stroke-thin) solid var(--color-text-faint);
+  border-radius: var(--radius-sm);
+}
+
+.hero__synopsis {
+  max-width: var(--hero-synopsis-width);
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--type-body);
+  line-height: var(--leading-normal);
+  /* Never more than three lines, whatever the copy. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}

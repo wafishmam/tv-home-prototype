@@ -58,6 +58,22 @@
      Chosen so one full rail fits below, plus a peek of the next rail. */
   --rails-top: 600px;
 
+  /* ---- Hero ------------------------------------------------------------ */
+  /* The backdrop is the focused item's art, 16:9, pinned to the top right. */
+  --hero-backdrop-width: 1280px;
+  --hero-backdrop-height: 720px;
+  --hero-content-width: 900px;
+  --hero-synopsis-width: 760px;
+  /* Scrim stops, as a share of the backdrop. Left edge: solid, then clear. */
+  --hero-fade-solid: 20%;
+  --hero-fade-clear: 70%;
+  /* Bottom edge: solid up to the top of the rails (120 of 720px), then clear. */
+  --hero-fade-floor: 17%;
+  --hero-fade-bottom: 60%;
+  --hero-fade-top: 25%;
+  /* How far the hero text rises as it fades in. */
+  --hero-text-rise: var(--space-2);
+
   /* ---- Cards and rails ------------------------------------------------- */
   /* Cards are 16:9. Live cards are wider: two teams plus a clock. */
   --card-width: 384px;
@@ -99,6 +115,7 @@
   --type-title-sm: 32px;
   --type-title: 40px;
   --type-headline: 64px;
+  --type-hero: 88px;
   --type-display: 104px;
 
   --weight-regular: 400;
