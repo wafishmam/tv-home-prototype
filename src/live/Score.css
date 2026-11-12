@@ -1,0 +1,11 @@
+/* Sizes and colour are inherited, so the same score works on a card and in the hero. */
+.score {
+  position: relative;
+  display: inline-block;
+  /* Equal-width digits: a changing score does not nudge its neighbours. */
+  font-variant-numeric: tabular-nums;
+}
+
+.score__value {
+  display: inline-block;
+}

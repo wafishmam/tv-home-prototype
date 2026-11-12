@@ -8,7 +8,7 @@
 }
 
 /* A dark chip, because it sits across two team colours of unknown brightness. */
-.live-card__league {
+.live-card__status {
   position: absolute;
   top: var(--space-4);
   left: 50%;
@@ -19,12 +19,10 @@
   color: var(--color-text);
   font-size: var(--type-caption);
   font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
-/* One column per team, matching the two halves of the artwork. */
+/* One column per team, matching the two halves of the artwork. The top
+   padding keeps the columns clear of the status chip. */
 .live-card__teams {
   position: absolute;
   inset: 0;
@@ -32,12 +30,23 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-items: center;
+  padding-top: var(--space-7);
 }
 
 .live-card__team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: var(--font-display);
-  font-size: var(--type-headline);
   font-weight: var(--weight-black);
   font-stretch: var(--stretch-condensed);
   line-height: var(--leading-tight);
+}
+
+.live-card__abbr {
+  font-size: var(--type-title);
+}
+
+.live-card__score {
+  font-size: var(--type-headline);
 }

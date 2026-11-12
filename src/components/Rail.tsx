@@ -1,7 +1,7 @@
 import { useRef, type ReactNode } from 'react';
 import { describeItem } from '../data/describe';
 import type { RailData } from '../data/types';
-import { LiveCard } from '../live/LiveCard';
+import { LiveRailCard } from '../live/LiveRailCard';
 import { Focusable } from '../navigation/Focusable';
 import { useChildPitch } from '../navigation/useChildPitch';
 import { useIsRowFocused, useRowAnchor } from '../navigation/useFocusable';
@@ -33,9 +33,13 @@ export function Rail({ rail, passed }: RailProps) {
       <RailTrack rowId={rail.id}>
         {rail.items.map((item, index) => (
           <li key={item.id} className="rail__item">
-            <Focusable rowId={rail.id} index={index} label={describeItem(item)}>
-              {item.kind === 'game' ? <LiveCard game={item} /> : <Card item={item} />}
-            </Focusable>
+            {item.kind === 'game' ? (
+              <LiveRailCard game={item} rowId={rail.id} index={index} />
+            ) : (
+              <Focusable rowId={rail.id} index={index} label={describeItem(item)}>
+                <Card item={item} />
+              </Focusable>
+            )}
           </li>
         ))}
       </RailTrack>

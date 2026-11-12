@@ -1,0 +1,30 @@
+.game-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  white-space: nowrap;
+}
+
+.game-status__dot {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-text-faint);
+}
+
+/* Coral and pulsing only while the game is live. */
+.game-status[data-live='true'] .game-status__dot {
+  background: var(--color-live);
+  animation: live-pulse var(--duration-pulse) ease-in-out infinite;
+}
+
+/* Equal-width digits, so the clock does not jitter as it counts. */
+.game-status__clock {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes live-pulse {
+  50% {
+    opacity: var(--opacity-dim);
+  }
+}

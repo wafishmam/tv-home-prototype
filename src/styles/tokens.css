@@ -145,6 +145,8 @@
   /* The hero is ambient, not a direct response to a key press, so it can
      take longer than the UI-feedback durations above. */
   --duration-hero: 450ms;
+  /* One full cycle of the live dot. Slow, so it reads as ambient. */
+  --duration-pulse: 1600ms;
   /* How long focus must rest on a card before the hero follows it. */
   --delay-hero-dwell: 300ms;
 

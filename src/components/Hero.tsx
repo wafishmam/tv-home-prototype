@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import { rails } from '../data/catalog';
 import type { CatalogItem } from '../data/types';
+import { GameStatus } from '../live/GameStatus';
+import { Score } from '../live/Score';
 import { useSettledFocus } from '../navigation/useSettledFocus';
 import { tokenBezier, tokenPx, tokenSeconds } from '../styles/tokens';
 import { ItemArt } from './poster/ItemArt';
@@ -81,6 +83,14 @@ function HeroDetails({ item }: { item: CatalogItem }) {
           {item.home.name} <span className="hero__versus">vs</span> {item.away.name}
         </h1>
         <ul className="hero__meta">
+          <li>
+            <GameStatus gameId={item.id} />
+          </li>
+          <li className="hero__scoreline">
+            {item.home.abbr} <Score gameId={item.id} side="home" />
+            <span className="hero__versus">:</span>
+            <Score gameId={item.id} side="away" /> {item.away.abbr}
+          </li>
           <li>{item.venue}</li>
         </ul>
         <p className="hero__synopsis">{item.synopsis}</p>
