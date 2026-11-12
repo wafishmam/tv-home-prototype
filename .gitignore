@@ -4,3 +4,6 @@ dist
 .vercel
 .DS_Store
 *.local
+
+# Private working notes, not part of the repository
+*.docx
