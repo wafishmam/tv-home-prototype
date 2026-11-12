@@ -1,9 +1,7 @@
+import { TOPBAR_ROW } from '../components/homeRows';
 import { useFocusable } from '../navigation/useFocusable';
 import { toggleSpoilerFree, useSpoilerFree } from './spoilers';
 import './SpoilerToggle.css';
-
-/** The focus row the toggle lives in. The home screen lists it above the rails. */
-export const TOPBAR_ROW = 'topbar';
 
 /** The spoiler free switch in the top bar. It is a focusable item like any card. */
 export function SpoilerToggle() {

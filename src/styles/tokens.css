@@ -99,6 +99,19 @@
   --toggle-inset: var(--space-1);
   --panel-width: 640px;
 
+  /* ---- Touch controls -------------------------------------------------- */
+  /* The touch pad sits outside the scaled stage, so these are real screen px. */
+  --touch-key: 56px;
+  --touch-key-large: 80px;
+  --touch-key-radius: 16px;
+  --touch-gutter: 16px;
+  --touch-type: 18px;
+  --touch-pad-height: 208px;
+  /* Width of each control column beside the stage in landscape. */
+  --touch-side-width: 192px;
+  /* How long an arrow must be held before it starts repeating. */
+  --touch-repeat-delay: 400ms;
+
   /* ---- Posters --------------------------------------------------------- */
   --poster-padding: var(--space-5);
   --poster-tilt: -3deg;

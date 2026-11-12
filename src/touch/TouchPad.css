@@ -1,0 +1,139 @@
+/*
+ * The touch pad lives outside the scaled stage, so its sizes are real
+ * screen px (the --touch-* tokens), not TV pixels.
+ */
+.touch-pad {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-touch);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--touch-pad-height);
+  padding: 0 var(--touch-gutter);
+  /* Keep clear of the home indicator on phones. */
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--color-surface);
+  /* No scrolling, zooming or text selection from touches on the pad. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Portrait: the stage gives up the bottom of the screen to the pad. */
+@media (orientation: portrait) {
+  .shell[data-touch='true'] .stage-viewport {
+    bottom: var(--touch-pad-height);
+  }
+}
+
+/* Landscape: height is scarce, so the controls move to a column on each
+   side and the stage gives up width instead. Nothing ever covers the stage:
+   the focused card sits at the lower left, exactly where a floating pad
+   would go. */
+@media (orientation: landscape) {
+  .shell[data-touch='true'] .stage-viewport {
+    left: var(--touch-side-width);
+    right: var(--touch-side-width);
+  }
+
+  .touch-pad {
+    top: 0;
+    height: auto;
+    align-items: stretch;
+    padding: 0;
+    /* The bar itself is invisible and lets touches through to the stage
+       between the two columns. */
+    background: none;
+    pointer-events: none;
+  }
+
+  .touch-pad__dpad,
+  .touch-pad__actions {
+    pointer-events: auto;
+  }
+
+  .touch-pad > * {
+    width: var(--touch-side-width);
+    justify-content: center;
+    align-content: center;
+    background: var(--color-surface);
+  }
+
+  .touch-pad__actions {
+    flex-direction: column-reverse;
+  }
+}
+
+.touch-pad__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-key);
+  height: var(--touch-key);
+  border-radius: var(--touch-key-radius);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-size: var(--touch-type);
+  font-weight: var(--weight-semibold);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--duration-instant) var(--ease-out);
+}
+
+.touch-pad__button:active {
+  transform: scale(var(--press-scale));
+  background: var(--color-text-faint);
+}
+
+/* A three by three grid with the arrows on the four edges. */
+.touch-pad__dpad {
+  display: grid;
+  grid-template-columns: repeat(3, var(--touch-key));
+  grid-template-rows: repeat(3, var(--touch-key));
+}
+
+.touch-pad__up {
+  grid-area: 1 / 2;
+}
+
+.touch-pad__left {
+  grid-area: 2 / 1;
+}
+
+.touch-pad__right {
+  grid-area: 2 / 3;
+}
+
+.touch-pad__down {
+  grid-area: 3 / 2;
+}
+
+.touch-pad__arrow {
+  width: 50%;
+  height: 50%;
+  fill: currentColor;
+}
+
+.touch-pad__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--touch-gutter);
+}
+
+.touch-pad__back {
+  width: auto;
+  padding: 0 var(--touch-key-radius);
+  border-radius: var(--radius-pill);
+}
+
+/* OK is the primary action: larger, round and in the focus colour. */
+.touch-pad__ok {
+  width: var(--touch-key-large);
+  height: var(--touch-key-large);
+  border-radius: var(--radius-pill);
+  background: var(--color-focus);
+  color: var(--color-bg);
+  font-weight: var(--weight-bold);
+}
