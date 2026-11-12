@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import type { Side } from '../data/liveFeed';
 import { tokenSeconds } from '../styles/tokens';
 import { Score } from './Score';
@@ -19,12 +19,12 @@ export function ScoreSlot({ gameId, side }: { gameId: string; side: Side }) {
 
   // The key makes React replace the element, so each state fades in fresh.
   return visible ? (
-    <motion.span key="score" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={fade}>
+    <m.span key="score" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={fade}>
       <Score gameId={gameId} side={side} />
-    </motion.span>
+    </m.span>
   ) : (
     <span key="veil" className="score-veil-wrap" aria-hidden="true">
-      <motion.span className="score-veil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={fade} />
+      <m.span className="score-veil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={fade} />
     </span>
   );
 }

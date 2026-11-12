@@ -1,0 +1,20 @@
+/* Top centre, level with the top bar, where it covers nothing. */
+.hint {
+  position: absolute;
+  top: var(--safe-y);
+  left: 50%;
+  z-index: var(--z-hint);
+  display: flex;
+  align-items: center;
+  height: var(--topbar-height);
+  padding: 0 var(--space-5);
+  /* Centred with a translate; the fade is animated on opacity only. */
+  translate: -50% 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-focus);
+  color: var(--color-bg);
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+  pointer-events: none;
+}

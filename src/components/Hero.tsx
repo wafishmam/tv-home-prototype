@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { useState } from 'react';
 import { rails } from '../data/catalog';
 import type { CatalogItem, GameItem } from '../data/types';
@@ -33,7 +33,7 @@ export function Hero() {
     <section className="hero" aria-label="Focused title">
       {/* Backdrop: old and new overlap and crossfade. */}
       <AnimatePresence initial={false}>
-        <motion.div
+        <m.div
           key={item.id}
           className="hero__backdrop"
           initial={{ opacity: 0 }}
@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: tokenSeconds('--duration-hero'), ease: 'easeInOut' }}
         >
           <ItemArt item={item} backdrop />
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {/* Scrims sit above every backdrop so text stays readable on any art. */}
@@ -51,7 +51,7 @@ export function Hero() {
       {/* Text: two overlapping blocks of text are unreadable, so the old one
           leaves quickly before the new one arrives ("wait" mode). */}
       <AnimatePresence initial={false} mode="wait">
-        <motion.div
+        <m.div
           key={item.id}
           className="hero__content"
           initial={{ opacity: 0, y: tokenPx('--hero-text-rise') }}
@@ -66,7 +66,7 @@ export function Hero() {
           }}
         >
           <HeroDetails item={item} />
-        </motion.div>
+        </m.div>
       </AnimatePresence>
     </section>
   );

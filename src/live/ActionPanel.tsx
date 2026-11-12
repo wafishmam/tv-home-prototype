@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import type { CatalogItem } from '../data/types';
 import { useNavigation } from '../navigation/FocusContext';
@@ -81,7 +81,7 @@ function ActionPanel({ item, onClose }: { item: CatalogItem; onClose: () => void
   const easeOut = tokenBezier('--ease-out');
 
   return (
-    <motion.div
+    <m.div
       className="panel-layer"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -90,7 +90,7 @@ function ActionPanel({ item, onClose }: { item: CatalogItem; onClose: () => void
       // Clicking the dimmed area closes the panel.
       onClick={onClose}
     >
-      <motion.div
+      <m.div
         className="panel"
         role="dialog"
         aria-modal="true"
@@ -124,8 +124,8 @@ function ActionPanel({ item, onClose }: { item: CatalogItem; onClose: () => void
           ))}
         </ul>
         <p className="panel__note">Playback is not part of this prototype.</p>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 

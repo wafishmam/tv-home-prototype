@@ -1,4 +1,4 @@
-import { MotionConfig } from 'motion/react';
+import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import { Home } from './components/Home';
 import { homeInitialRowId, homeRows } from './components/homeRows';
 import { FeedMonitor } from './dev/FeedMonitor';
@@ -18,19 +18,23 @@ export function App() {
   if (devFlags.feed) return <FeedMonitor />;
 
   return (
-    // reducedMotion="user": when the system asks for reduced motion, the motion
-    // library drops movement and keeps fades.
-    <MotionConfig reducedMotion="user">
-      {/* The focus provider wraps both the stage and the touch pad: the pad
-          sits outside the scaled stage but drives the same navigation. */}
-      <FocusProvider rows={homeRows} initialRowId={homeInitialRowId}>
-        <div className="shell" data-touch={touch}>
-          <Stage showGuides={devFlags.guides}>
-            <Home />
-          </Stage>
-          {touch && <TouchPad />}
-        </div>
-      </FocusProvider>
-    </MotionConfig>
+    // LazyMotion with domAnimation loads only the animation features this
+    // prototype uses, which keeps the motion library's share of the bundle down.
+    <LazyMotion features={domAnimation} strict>
+      {/* reducedMotion="user": when the system asks for reduced motion, the
+          motion library drops movement and keeps fades. */}
+      <MotionConfig reducedMotion="user">
+        {/* The focus provider wraps both the stage and the touch pad: the pad
+            sits outside the scaled stage but drives the same navigation. */}
+        <FocusProvider rows={homeRows} initialRowId={homeInitialRowId}>
+          <div className="shell" data-touch={touch}>
+            <Stage showGuides={devFlags.guides}>
+              <Home />
+            </Stage>
+            {touch && <TouchPad />}
+          </div>
+        </FocusProvider>
+      </MotionConfig>
+    </LazyMotion>
   );
 }

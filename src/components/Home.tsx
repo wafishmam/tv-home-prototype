@@ -4,6 +4,7 @@ import { ActionPanelProvider } from '../live/ActionPanel';
 import { useChildPitch } from '../navigation/useChildPitch';
 import { useAnchorRowId } from '../navigation/useFocusable';
 import { Hero } from './Hero';
+import { Hint } from './Hint';
 import { Rail } from './Rail';
 import { TopBar } from './TopBar';
 import './Home.css';
@@ -22,6 +23,7 @@ export function Home() {
         <main className="home__rails">
           <RailStack />
         </main>
+        <Hint />
       </div>
     </ActionPanelProvider>
   );

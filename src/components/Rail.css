@@ -39,7 +39,7 @@
   list-style: none;
   /* Same duration and curve as the cards, so the scroll, the scale and the
      neighbour shift read as one movement. */
-  transition: transform var(--duration-base) var(--ease-out);
+  transition: transform var(--duration-move) var(--ease-out);
   will-change: transform;
 }
 

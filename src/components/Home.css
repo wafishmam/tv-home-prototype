@@ -23,6 +23,6 @@
 /* Left padding is the anchor: the first card of every rail starts here. */
 .home__rail-stack {
   padding-left: var(--safe-x);
-  transition: transform var(--duration-slow) var(--ease-out);
+  transition: transform var(--duration-move-slow) var(--ease-out);
   will-change: transform;
 }

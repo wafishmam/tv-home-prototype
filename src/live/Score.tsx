@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import type { Side } from '../data/liveFeed';
 import { tokenBezier, tokenSeconds } from '../styles/tokens';
 import { useLiveValue } from './useLiveGame';
@@ -22,7 +22,7 @@ export function Score({ gameId, side }: ScoreProps) {
       {/* popLayout takes the leaving number out of the layout at once, so the
           two numbers overlap in place instead of sitting side by side. */}
       <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
+        <m.span
           key={value}
           className="score__value"
           initial={{ y: '50%', opacity: 0 }}
@@ -31,7 +31,7 @@ export function Score({ gameId, side }: ScoreProps) {
           transition={transition}
         >
           {value}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   );

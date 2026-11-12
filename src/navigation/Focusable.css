@@ -16,7 +16,7 @@
   /* Scale from the left edge, so the focused card stays on the anchor line. */
   transform-origin: left center;
   transition:
-    transform var(--duration-base) var(--ease-out),
+    transform var(--duration-move) var(--ease-out),
     opacity var(--duration-base) var(--ease-out);
 }
 

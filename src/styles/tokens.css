@@ -166,6 +166,11 @@
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --duration-slow: 250ms;
+  /* Durations for things that move across the screen: focus scale, the
+     neighbour shift and rail scrolling. Separate tokens so that reduced
+     motion (end of this file) can switch movement off and keep fades. */
+  --duration-move: var(--duration-base);
+  --duration-move-slow: var(--duration-slow);
   /* The hero is ambient, not a direct response to a key press, so it can
      take longer than the UI-feedback durations above. */
   --duration-hero: 450ms;
@@ -209,4 +214,22 @@
   --z-hint: 30;
   --z-touch: 40;
   --z-guides: 100;
+
+  /* ---- Hint ------------------------------------------------------------ */
+  /* How long the first-load hint stays if the viewer does nothing. */
+  --duration-hint: 6000ms;
+}
+
+/*
+ * Reduced motion. Things still change state, they just do not travel:
+ * focus jumps to the next card, rails jump to position, the live dot stops
+ * pulsing. Fades stay, because they help show that something changed.
+ * (The motion library applies the same rule to its animations, see App.tsx.)
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-move: 0ms;
+    --duration-move-slow: 0ms;
+    --duration-pulse: 0ms;
+  }
 }

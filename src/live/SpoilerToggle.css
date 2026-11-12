@@ -58,7 +58,7 @@
   height: calc(var(--toggle-height) - 2 * var(--toggle-inset));
   border-radius: var(--radius-pill);
   background: var(--color-focus);
-  transition: transform var(--duration-base) var(--ease-out);
+  transition: transform var(--duration-move) var(--ease-out);
 }
 
 /* The knob travels the width of the track minus its own width and insets. */

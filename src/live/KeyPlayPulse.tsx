@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { useEffect, useState } from 'react';
 import type { GameItem } from '../data/types';
 import { tokenBezier, tokenMs, tokenSeconds } from '../styles/tokens';
@@ -47,15 +47,15 @@ export function KeyPlayPulse({ game }: { game: GameItem }) {
   return (
     <AnimatePresence>
       {pulse && (
-        <motion.div key={pulse.id} className="key-play" exit={{ opacity: 0 }}>
+        <m.div key={pulse.id} className="key-play" exit={{ opacity: 0 }}>
           {/* A ring that flashes once around the whole card. */}
-          <motion.span
+          <m.span
             className="key-play__flash"
             initial={{ opacity: 1 }}
             animate={{ opacity: 0 }}
             transition={{ duration: tokenSeconds('--duration-flash'), ease: 'easeOut' }}
           />
-          <motion.span
+          <m.span
             className="key-play__banner"
             role="status"
             initial={{ y: '-100%' }}
@@ -64,8 +64,8 @@ export function KeyPlayPulse({ game }: { game: GameItem }) {
           >
             <span className="key-play__dot" />
             {visible ? pulse.detail : 'Something just happened'}
-          </motion.span>
-        </motion.div>
+          </m.span>
+        </m.div>
       )}
     </AnimatePresence>
   );
