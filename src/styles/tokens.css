@@ -88,6 +88,17 @@
   --rail-title-gap: var(--space-5);
   --rail-gap: var(--space-7);
 
+  /* ---- Spoiler free mode ----------------------------------------------- */
+  /* The bar that stands in for a hidden score. In em, so it follows the type size. */
+  --veil-width: 1.4em;
+  --veil-height: 0.36em;
+  --opacity-veil: 0.45;
+  --key-play-banner-height: var(--space-8);
+  --toggle-width: 72px;
+  --toggle-height: 36px;
+  --toggle-inset: var(--space-1);
+  --panel-width: 640px;
+
   /* ---- Posters --------------------------------------------------------- */
   --poster-padding: var(--space-5);
   --poster-tilt: -3deg;
@@ -147,6 +158,9 @@
   --duration-hero: 450ms;
   /* One full cycle of the live dot. Slow, so it reads as ambient. */
   --duration-pulse: 1600ms;
+  /* A key play: the ring flashes once, the banner stays for a moment. */
+  --duration-flash: 900ms;
+  --duration-pulse-hold: 2800ms;
   /* How long focus must rest on a card before the hero follows it. */
   --delay-hero-dwell: 300ms;
 

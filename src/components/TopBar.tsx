@@ -1,7 +1,8 @@
 import { useId } from 'react';
+import { SpoilerToggle } from '../live/SpoilerToggle';
 import './TopBar.css';
 
-/** The strip across the top: brand mark on the left, controls on the right (later). */
+/** The strip across the top: brand mark on the left, spoiler free toggle on the right. */
 export function TopBar() {
   return (
     <header className="topbar">
@@ -9,6 +10,7 @@ export function TopBar() {
         <BrandMark />
         <span className="topbar__wordmark">Nightjar</span>
       </div>
+      <SpoilerToggle />
     </header>
   );
 }

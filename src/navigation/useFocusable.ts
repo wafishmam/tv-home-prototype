@@ -101,8 +101,7 @@ export function useRowAnchor(rowId: string): number {
   return useFocusSelector((state) => state.anchorByRow[rowId] ?? 0);
 }
 
-/** The position, in the list of rows, of the row the screen is scrolled to. */
-export function useAnchorRowPosition(): number {
-  const { rows } = useNavigation();
-  return useFocusSelector((state) => rows.findIndex((row) => row.id === state.anchorRowId));
+/** The id of the row the screen is scrolled to. */
+export function useAnchorRowId(): string {
+  return useFocusSelector((state) => state.anchorRowId);
 }

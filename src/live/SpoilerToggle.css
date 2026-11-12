@@ -1,0 +1,73 @@
+.spoiler-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--topbar-height);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  outline: none;
+  /* A dark chip, because the hero art can be any colour behind it. */
+  background: var(--color-scrim-strong);
+  color: var(--color-text);
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The same ring as a focused card. No scale: it would push the toggle out
+   of the safe area. */
+.spoiler-toggle::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * (var(--focus-ring-gap) + var(--focus-ring-width)));
+  border: var(--focus-ring-width) solid var(--color-focus);
+  border-radius: var(--radius-pill);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-instant) var(--ease-out);
+}
+
+.spoiler-toggle[data-focus='focused']::after {
+  opacity: 1;
+}
+
+.spoiler-toggle[data-pressed] {
+  transform: scale(var(--press-scale));
+}
+
+.spoiler-toggle__track {
+  position: relative;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  border-radius: var(--radius-pill);
+  background: var(--color-text-faint);
+  transition: background-color var(--duration-base) ease;
+}
+
+.spoiler-toggle__track[data-on='true'] {
+  background: var(--color-live);
+}
+
+.spoiler-toggle__knob {
+  position: absolute;
+  top: var(--toggle-inset);
+  left: var(--toggle-inset);
+  width: calc(var(--toggle-height) - 2 * var(--toggle-inset));
+  height: calc(var(--toggle-height) - 2 * var(--toggle-inset));
+  border-radius: var(--radius-pill);
+  background: var(--color-focus);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* The knob travels the width of the track minus its own width and insets. */
+.spoiler-toggle__track[data-on='true'] .spoiler-toggle__knob {
+  transform: translateX(calc(var(--toggle-width) - var(--toggle-height)));
+}
+
+/* Fixed width so "On" and "Off" do not resize the chip. */
+.spoiler-toggle__state {
+  width: var(--space-7);
+  color: var(--color-text-muted);
+}

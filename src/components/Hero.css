@@ -105,8 +105,12 @@
   vertical-align: middle;
 }
 
+.hero__hidden {
+  color: var(--color-text-muted);
+}
+
 .hero__scoreline {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-weight: var(--weight-bold);

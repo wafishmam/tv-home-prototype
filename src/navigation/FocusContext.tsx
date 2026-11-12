@@ -49,8 +49,8 @@ export interface Navigation {
 
 const itemKey = (rowId: string, index: number) => `${rowId}:${index}`;
 
-function createNavigation(rows: readonly Row[]): Navigation {
-  const store = createStore(createInitialState(rows));
+function createNavigation(rows: readonly Row[], initialRowId?: string): Navigation {
+  const store = createStore(createInitialState(rows, initialRowId));
   const registrations = new Map<string, Registration>();
   const captures: Array<(action: NavAction) => void> = [];
   const lastPointer = { x: -1, y: -1 };
@@ -123,6 +123,10 @@ function createNavigation(rows: readonly Row[]): Navigation {
       return () => {
         const position = captures.indexOf(handler);
         if (position !== -1) captures.splice(position, 1);
+        // Hand real DOM focus back to the focused item, for assistive technology.
+        const state = store.get();
+        const key = itemKey(state.rowId, state.indexByRow[state.rowId] ?? 0);
+        registrations.get(key)?.element.current?.focus({ preventScroll: true });
       };
     },
   };
@@ -144,13 +148,15 @@ const FocusContext = createContext<Navigation | null>(null);
 interface FocusProviderProps {
   /** The rows of the screen, top to bottom. */
   rows: readonly Row[];
+  /** The row that has focus on first load. Defaults to the first row. */
+  initialRowId?: string;
   children: ReactNode;
 }
 
-export function FocusProvider({ rows, children }: FocusProviderProps) {
+export function FocusProvider({ rows, initialRowId, children }: FocusProviderProps) {
   // Created once. The navigation object is stable, so providing it through
   // context never causes a re-render.
-  const [navigation] = useState(() => createNavigation(rows));
+  const [navigation] = useState(() => createNavigation(rows, initialRowId));
 
   useEffect(() => {
     let lastRepeat = 0;

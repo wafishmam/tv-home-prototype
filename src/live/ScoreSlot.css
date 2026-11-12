@@ -1,0 +1,24 @@
+/*
+ * The neutral stand-in for a hidden score: a soft bar in the team's text
+ * colour. It is the same size for every team and every score, so it gives
+ * nothing away (a wider bar would hint at a two digit score).
+ * Sized in em so it follows the font size of wherever it is used.
+ */
+.score-veil {
+  display: inline-block;
+  width: var(--veil-width);
+  height: var(--veil-height);
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  vertical-align: middle;
+}
+
+/* The bar is flat colour at reduced strength, set on the wrapper so the
+   fade-in animation (which animates opacity on the bar) is not overridden. */
+.score-veil-wrap {
+  display: inline-flex;
+  align-items: center;
+  /* Same line box as a score, so nothing moves when a score is revealed. */
+  height: 1em;
+  opacity: var(--opacity-veil);
+}

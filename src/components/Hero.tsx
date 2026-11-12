@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import { rails } from '../data/catalog';
-import type { CatalogItem } from '../data/types';
+import type { CatalogItem, GameItem } from '../data/types';
+import { useScoreVisible } from '../live/spoilers';
 import { GameStatus } from '../live/GameStatus';
 import { Score } from '../live/Score';
 import { useSettledFocus } from '../navigation/useSettledFocus';
@@ -71,6 +72,20 @@ export function Hero() {
   );
 }
 
+/** The score in the hero, which follows spoiler free mode like the cards do. */
+function HeroScoreline({ game }: { game: GameItem }) {
+  const visible = useScoreVisible(game.id);
+  if (!visible) return <span className="hero__hidden">Score hidden</span>;
+
+  return (
+    <span className="hero__scoreline">
+      {game.home.abbr} <Score gameId={game.id} side="home" />
+      <span className="hero__versus">:</span>
+      <Score gameId={game.id} side="away" /> {game.away.abbr}
+    </span>
+  );
+}
+
 function HeroDetails({ item }: { item: CatalogItem }) {
   if (item.kind === 'game') {
     return (
@@ -86,10 +101,8 @@ function HeroDetails({ item }: { item: CatalogItem }) {
           <li>
             <GameStatus gameId={item.id} />
           </li>
-          <li className="hero__scoreline">
-            {item.home.abbr} <Score gameId={item.id} side="home" />
-            <span className="hero__versus">:</span>
-            <Score gameId={item.id} side="away" /> {item.away.abbr}
+          <li>
+            <HeroScoreline game={item} />
           </li>
           <li>{item.venue}</li>
         </ul>

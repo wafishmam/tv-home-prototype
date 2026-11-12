@@ -1,6 +1,7 @@
 import { useRef, type ReactNode } from 'react';
 import { describeItem } from '../data/describe';
 import type { RailData } from '../data/types';
+import { useOpenActionPanel } from '../live/ActionPanel';
 import { LiveRailCard } from '../live/LiveRailCard';
 import { Focusable } from '../navigation/Focusable';
 import { useChildPitch } from '../navigation/useChildPitch';
@@ -17,6 +18,7 @@ interface RailProps {
 /** One horizontal row of cards with its title. Each rail is one focus row. */
 export function Rail({ rail, passed }: RailProps) {
   const focused = useIsRowFocused(rail.id);
+  const openPanel = useOpenActionPanel();
   const titleId = `rail-${rail.id}-title`;
   const live = rail.items[0]?.kind === 'game';
 
@@ -36,7 +38,12 @@ export function Rail({ rail, passed }: RailProps) {
             {item.kind === 'game' ? (
               <LiveRailCard game={item} rowId={rail.id} index={index} />
             ) : (
-              <Focusable rowId={rail.id} index={index} label={describeItem(item)}>
+              <Focusable
+                rowId={rail.id}
+                index={index}
+                label={describeItem(item)}
+                onSelect={() => openPanel(item)}
+              >
                 <Card item={item} />
               </Focusable>
             )}

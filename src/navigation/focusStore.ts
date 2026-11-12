@@ -16,6 +16,11 @@ export interface Row {
   id: string;
   /** How many items the row holds. */
   length: number;
+  /**
+   * True for rows that are not part of the scrolling stack, such as the top
+   * bar. Focusing a fixed row leaves the camera where it is.
+   */
+  fixed?: boolean;
 }
 
 export interface FocusState {
@@ -37,8 +42,8 @@ export interface FocusState {
   anchorByRow: Readonly<Record<string, number>>;
 }
 
-export function createInitialState(rows: readonly Row[]): FocusState {
-  const first = rows[0];
+export function createInitialState(rows: readonly Row[], initialRowId?: string): FocusState {
+  const first = rows.find((row) => row.id === initialRowId) ?? rows[0];
   if (!first) throw new Error('Focus navigation needs at least one row.');
 
   const zeros = Object.fromEntries(rows.map((row) => [row.id, 0]));
@@ -46,7 +51,11 @@ export function createInitialState(rows: readonly Row[]): FocusState {
 }
 
 /** Focus an item and bring the camera to it. Used for every key press. */
-function focusAndAnchor(state: FocusState, rowId: string, index: number): FocusState {
+function focusAndAnchor(state: FocusState, row: Row, index: number): FocusState {
+  const rowId = row.id;
+  // A fixed row takes focus but does not move the camera.
+  if (row.fixed) return focusAt(state, rowId, index);
+
   const unchanged =
     state.rowId === rowId &&
     state.indexByRow[rowId] === index &&
@@ -73,31 +82,33 @@ export function moveFocus(state: FocusState, rows: readonly Row[], direction: Di
 
   switch (direction) {
     case 'left':
-      return focusAndAnchor(state, row.id, Math.max(0, index - 1));
+      return focusAndAnchor(state, row, Math.max(0, index - 1));
     case 'right':
-      return focusAndAnchor(state, row.id, Math.min(row.length - 1, index + 1));
+      return focusAndAnchor(state, row, Math.min(row.length - 1, index + 1));
     case 'up':
     case 'down': {
       const target = rows[rowPosition + (direction === 'up' ? -1 : 1)];
       // At the first or last row there is nowhere to go.
       if (!target) return state;
       // Land on the item this row had focused last time (rail memory).
-      return focusAndAnchor(state, target.id, state.indexByRow[target.id] ?? 0);
+      return focusAndAnchor(state, target, state.indexByRow[target.id] ?? 0);
     }
   }
 }
 
 /**
  * Escape or Backspace when nothing is open: go back to the start of the
- * rail, and from there back to the first row.
+ * rail, and from there back to the first rail.
  */
 export function goBack(state: FocusState, rows: readonly Row[]): FocusState {
+  const row = rows.find((each) => each.id === state.rowId);
   const index = state.indexByRow[state.rowId] ?? 0;
-  if (index > 0) return focusAndAnchor(state, state.rowId, 0);
+  if (row && index > 0) return focusAndAnchor(state, row, 0);
 
-  const first = rows[0];
+  // The first row of content, skipping fixed rows like the top bar.
+  const first = rows.find((each) => !each.fixed);
   if (!first) return state;
-  return focusAndAnchor(state, first.id, state.indexByRow[first.id] ?? 0);
+  return focusAndAnchor(state, first, state.indexByRow[first.id] ?? 0);
 }
 
 /** Pointer hover or click: move focus, leave the camera where it is. */

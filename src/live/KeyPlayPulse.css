@@ -1,0 +1,37 @@
+.key-play {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.key-play__flash {
+  position: absolute;
+  inset: 0;
+  border: var(--focus-ring-width) solid var(--color-live);
+  border-radius: inherit;
+}
+
+/* Slides down over the status chip, so it never covers a score. */
+.key-play__banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  height: var(--key-play-banner-height);
+  background: var(--color-scrim-strong);
+  color: var(--color-text);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+}
+
+.key-play__dot {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-live);
+}

@@ -1,0 +1,69 @@
+/* Covers the stage and dims it, so the panel reads as the only active thing. */
+.panel-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-scrim);
+}
+
+.panel {
+  width: var(--panel-width);
+  padding: var(--space-6);
+  border: var(--stroke-thin) solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.panel__title {
+  margin-bottom: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--type-title);
+  font-weight: var(--weight-black);
+  font-stretch: var(--stretch-condensed);
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+.panel__choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel__choice {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  outline: none;
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-size: var(--type-body);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-instant) ease,
+    color var(--duration-instant) ease;
+}
+
+/* The focused choice inverts, and gets the same ring as a focused card. */
+.panel__choice[data-focused='true'] {
+  background: var(--color-focus);
+  color: var(--color-bg);
+  box-shadow:
+    0 0 0 var(--focus-ring-gap) var(--color-surface),
+    0 0 0 calc(var(--focus-ring-gap) + var(--focus-ring-width)) var(--color-focus);
+}
+
+.panel__note {
+  margin-top: var(--space-5);
+  color: var(--color-text-faint);
+  font-size: var(--type-caption);
+}
